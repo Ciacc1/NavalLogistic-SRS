@@ -1,0 +1,5 @@
+{
+  "name": "Docker Log Sentinel",
+  "description": "AI-powered agent for Docker container log analysis and anomaly detection using Gemini.",
+  "requestFramePermissions": []
+}
