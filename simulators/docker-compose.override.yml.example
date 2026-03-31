@@ -1,0 +1,41 @@
+# Example: docker-compose.override.yml
+# Copia a docker-compose.override.yml per usi development specifici
+# Questo file sovrascrive la configurazione di docker-compose.yml solo localmente
+
+version: '3.8'
+
+services:
+  fleet-simulator:
+    # Disable auto-restart in dev
+    restart: no
+    
+    # Mount source per hot reload (se usi nodemon)
+    volumes:
+      - ./simulators/fleet-simulator/src:/app/src
+    
+    # Enable debug logging
+    environment:
+      LOG_LEVEL: debug
+      NODE_OPTIONS: --inspect=0.0.0.0:9221
+
+  cargo-simulator:
+    restart: no
+    volumes:
+      - ./simulators/cargo-simulator/src:/app/src
+    environment:
+      LOG_LEVEL: debug
+      NODE_OPTIONS: --inspect=0.0.0.0:9222
+
+  disaster-simulator:
+    restart: no
+    volumes:
+      - ./simulators/disaster-simulator/src:/app/src
+    environment:
+      LOG_LEVEL: debug
+      NODE_OPTIONS: --inspect=0.0.0.0:9223
+    # Expose debug port
+    ports:
+      - "9223:9223"
+
+# Usa con:
+# docker-compose -f docker-compose.yml -f docker-compose.override.yml up
