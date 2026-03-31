@@ -1,6 +1,6 @@
 import { GoogleGenAI, Type } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: "AIzaSyD_HiQMCQZuafrXUN2GPGod6oILqxmblxQ" });
+const ai = new GoogleGenAI({ apiKey: "yourapikey" });
 
 export interface LogAnomaly {
   timestamp: string;
